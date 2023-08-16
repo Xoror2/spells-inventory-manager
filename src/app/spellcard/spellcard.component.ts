@@ -37,6 +37,18 @@ export class SpellcardComponent implements OnChanges, OnInit {
     schools: [],
     rituals: []
   }
+  onKeyUp(event: Event, id: string): void {
+    if(id === "filter") {
+      if((event as KeyboardEvent).key === " " || (event as KeyboardEvent).key === "Enter") {
+        this.toggleFilterbox()
+      }
+    }
+    else if(id === 'add') {
+      if((event as KeyboardEvent).key === " " || (event as KeyboardEvent).key === "Enter") {
+        this.openDialog()
+      }
+    }
+  }
   isSelected(testValue: string, id: string): boolean {
     return this.filterLists[id].find(item => testValue === item) ? true:false
   }
@@ -142,6 +154,6 @@ export class SpellcardComponent implements OnChanges, OnInit {
     else {
       this.noSpells = false
     }
-    this.displayedColumns = this.id === 'yourSpells' ? (!this.noSpells ? (this.spellDetailsCalled ? ['learn', 'name', 'level', 'expand'] : ['name']) : ['name']) : this.displayedColumns 
+    this.displayedColumns = this.id === 'yourSpells' ? (!this.noSpells ? (this.spellDetailsCalled ? ['learn', 'prepared', 'name', 'level', 'expand'] : ['name']) : ['name']) : this.displayedColumns 
   }
 }

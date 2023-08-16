@@ -64,6 +64,18 @@ export class ItemcardComponent implements OnChanges, OnInit {
   itemsCalled: boolean = false;
   itemDetailsCalled: boolean = false;
 
+  onKeyUp(event: Event, id: string): void {
+    if(id === "filter") {
+      if((event as KeyboardEvent).key === " " || (event as KeyboardEvent).key === "Enter") {
+        this.toggleFilterbox()
+      }
+    }
+    else if(id === 'add') {
+      if((event as KeyboardEvent).key === " " || (event as KeyboardEvent).key === "Enter") {
+        this.openDialog()
+      }
+    }
+  }
   filterBox: boolean = false
   toggleFilterbox(): void {
     this.filterBox = !this.filterBox
@@ -167,7 +179,7 @@ export class ItemcardComponent implements OnChanges, OnInit {
       ]
     }
     this.id = changes["id"] != undefined ? changes["id"]["currentValue"] : this.id
-    if(this.id === "allItems") {
+    if(true) {
       this.itemsCalled = this.inventoryService.itemsFetched()
       this.itemDetailsCalled = this.inventoryService.itemDetailsFetched()
 
